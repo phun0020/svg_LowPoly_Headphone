@@ -245,7 +245,7 @@
 <g id="outside-background">
 	<radialGradient id="outside-background-rectangle_1_" cx="280" cy="280" r="280" gradientUnits="userSpaceOnUse">
 		<stop  offset="0" style="stop-color:#FFFFFF"/>
-		<stop  offset="0.9946" style="stop-color:#7F8C8D"/>
+		<stop  offset="0.9946" style="stop-color:#9AA2AE"/>
 	</radialGradient>
 	<rect id="outside-background-rectangle" x="0" y="0" class="st3Old" width="560" height="560"/>
 </g>
