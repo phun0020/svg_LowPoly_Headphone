@@ -1,5 +1,4 @@
 var headphone = document.getElementById('headphone');
-var startBtn = document.getElementById('startBtn');
 headphone.addEventListener('load', () => {
     var svgDoc = headphone.contentDocument;
     var outlineHeadphone1 = svgDoc.getElementById('outline-headphone1');
@@ -22,7 +21,7 @@ headphone.addEventListener('load', () => {
         }, 8 * i);
     };
 
-    startBtn.addEventListener('click', () => {
+    document.getElementById('startBtn').addEventListener('click', () => {
         var polygonEls = svgDoc.getElementById('gHeadPhone').children;
         var polygonLength = polygonEls.length;
         var oldClass = "";
