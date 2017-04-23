@@ -11,7 +11,7 @@ headphone.addEventListener('load', () => {
     // magic begins
 
     var doSetTimeOut = (polygonEls, polygonLength, i, oldClass, newClass) => {
-        setInterval(() => {
+        setTimeout(() => {
             polygonEls[i].classList.remove(oldClass);
             polygonEls[i].classList.remove('st420');
             polygonEls[i].classList.add(newClass);
