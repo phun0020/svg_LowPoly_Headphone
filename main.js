@@ -1,6 +1,4 @@
 var headphone = document.getElementById('headphone');
-var removeBtn = document.getElementById('removeBtn');
-var startBtn = document.getElementById('startBtn')
 headphone.addEventListener('load', () => {
     var svgDoc = headphone.contentDocument;
     var outlineHeadphone1 = svgDoc.getElementById('outline-headphone1');
@@ -8,9 +6,10 @@ headphone.addEventListener('load', () => {
     var iconContainer = svgDoc.getElementById('inside-background-rectangle');
     var iconShape = svgDoc.getElementById('icon');
     var heartDetail = svgDoc.getElementById('detail-heart');
-
+    
     // magic begins
-    // 2 hours
+    var removeBtn = document.getElementById('removeBtn');
+    var startBtn = document.getElementById('startBtn');
 
     var colorSetTimeOut = (polygonEls, polygonLength, i, oldClass, newClass, mode = "add") => {
         setTimeout(() => {
