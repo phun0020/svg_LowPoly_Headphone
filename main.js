@@ -1,4 +1,6 @@
 var headphone = document.getElementById('headphone');
+var removeBtn = document.getElementById('removeBtn');
+var startBtn = document.getElementById('startBtn')
 headphone.addEventListener('load', () => {
     var svgDoc = headphone.contentDocument;
     var outlineHeadphone1 = svgDoc.getElementById('outline-headphone1');
@@ -8,30 +10,53 @@ headphone.addEventListener('load', () => {
     var heartDetail = svgDoc.getElementById('detail-heart');
 
     // magic begins
+    // 2 hours
 
-    var doSetTimeOut = (polygonEls, polygonLength, i, oldClass, newClass) => {
+    var colorSetTimeOut = (polygonEls, polygonLength, i, oldClass, newClass, mode = "add") => {
         setTimeout(() => {
             polygonEls[i].classList.remove(oldClass);
-            polygonEls[i].classList.remove('st420');
+            mode == 'add' ? polygonEls[i].classList.remove('st420') : polygonEls[i].classList.add('st420');
             polygonEls[i].classList.add(newClass);
             
             polygonEls[polygonLength + i].classList.remove(oldClass);
-            polygonEls[polygonLength + i].classList.remove('st420');
             polygonEls[polygonLength + i].classList.add(newClass);
+            mode == 'add' ? polygonEls[polygonLength + i].classList.remove('st420') : polygonEls[polygonLength + i].classList.add('st420');
         }, 8 * i);
     };
 
-    document.getElementById('startBtn').addEventListener('click', () => {
+    var disableTemporary = (el, time) => {
+        el.disabled = true;
+        setTimeout(() => {
+            el.disabled = false;
+        }, time)
+    };
+
+    var colorFill = (mode = 'add') => {
         var polygonEls = svgDoc.getElementById('gHeadPhone').children;
         var polygonLength = polygonEls.length;
         var oldClass = "";
         var newClass = "";
 
         for(var i = 0; i < polygonLength/2; i++) {
-            oldClass = polygonEls[i].classList[0];
-            newClass = oldClass.replace('r', '');
-            doSetTimeOut(polygonEls, polygonLength/2, i, oldClass, newClass);
+            if(mode == 'add') {
+                oldClass = polygonEls[i].classList[0] != 'st420' ? polygonEls[i].classList[0] : polygonEls[i].classList[1];
+                newClass = oldClass.replace('r', '');
+                colorSetTimeOut(polygonEls, polygonLength/2, i, oldClass, newClass);
+            } else {
+                oldClass = polygonEls[i].classList[0];
+                newClass = oldClass + 'r';
+                colorSetTimeOut(polygonEls, polygonLength/2, i, oldClass, newClass, 'remove');
+            }
         }
+    };
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+        disableTemporary(removeBtn, svgDoc.getElementById('gHeadPhone').children.length / 2 * 9);
+        colorFill();
+    });
+
+    document.getElementById('removeBtn').addEventListener('click', () => {
+        colorFill('remove')
     });
 
     // animate selector
