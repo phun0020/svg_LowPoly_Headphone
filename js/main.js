@@ -1,13 +1,15 @@
 var headphone = document.getElementById('headphone');
 headphone.addEventListener('load', () => {
+    // svg components
     var svgDoc = headphone.contentDocument;
     var outlineHeadphone1 = svgDoc.getElementById('outline-headphone1');
     var outlineHeadphone2 = svgDoc.getElementById('outline-headphone2');
     var iconContainer = svgDoc.getElementById('inside-background-rectangle');
     var iconShape = svgDoc.getElementById('icon');
     var heartDetail = svgDoc.getElementById('detail-heart');
-    
+
     // magic begins
+    // 2 hours
     var removeBtn = document.getElementById('removeBtn');
     var startBtn = document.getElementById('startBtn');
 
@@ -55,6 +57,7 @@ headphone.addEventListener('load', () => {
     });
 
     document.getElementById('removeBtn').addEventListener('click', () => {
+        disableTemporary(startBtn, svgDoc.getElementById('gHeadPhone').children.length / 2 * 9);
         colorFill('remove')
     });
 
